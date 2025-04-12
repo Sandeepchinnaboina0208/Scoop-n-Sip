@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Instagram } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
@@ -38,7 +37,10 @@ const galleryImages = [
 
 const Gallery = () => {
   return (
-    <section id="gallery" className="section-padding bg-gradient-to-b from-white to-icecream-pink/20">
+    <section
+      id="gallery"
+      className="section-padding bg-white dark:bg-black transition-colors duration-500"
+    >
       <div className="container mx-auto">
         <ScrollReveal>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-3">
@@ -46,17 +48,17 @@ const Gallery = () => {
               Our Gallery
             </span>
           </h2>
-          <p className="text-gray-600 text-center max-w-md mx-auto mb-12">
+          <p className="text-gray-600 dark:text-gray-300 text-center max-w-md mx-auto mb-12">
             A glimpse into our delicious world of treats
           </p>
         </ScrollReveal>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {galleryImages.map((image, index) => (
             <ScrollReveal key={image.id} delay={index * 100}>
               <div className="relative group overflow-hidden rounded-lg">
-                <img 
-                  src={image.url} 
+                <img
+                  src={image.url}
                   alt={image.alt}
                   className="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -67,10 +69,10 @@ const Gallery = () => {
             </ScrollReveal>
           ))}
         </div>
-        
+
         <div className="mt-8 text-center">
-          <a 
-            href="#" 
+          <a
+            href="#"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
           >
             <Instagram size={20} />

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart } from 'lucide-react';
@@ -30,12 +29,12 @@ const Navbar = () => {
         scrolled 
           ? 'bg-black shadow-md py-2 dark:bg-black dark:shadow-lg' 
           : 'bg-black bg-opacity-90 backdrop-blur-sm py-4'
-      }`}
+      } md:bg-transparent md:py-4`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
           <span className="font-heading text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 drop-shadow-md">
-            Scoop-n-Sip
+            Nazeer Cool Drinks
           </span>
         </Link>
         
@@ -73,7 +72,7 @@ const Navbar = () => {
       <div 
         className={`md:hidden bg-black absolute w-full left-0 shadow-md transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-60 py-4' : 'max-h-0 py-0 overflow-hidden'
-        }`}
+        } ${scrolled ? 'bg-opacity-90' : 'bg-opacity-80'}`}
       >
         <div className="container mx-auto px-4 flex flex-col gap-4">
           <Link 

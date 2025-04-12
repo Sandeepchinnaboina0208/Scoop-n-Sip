@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { IceCream, Coffee } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
@@ -32,13 +31,13 @@ const CategoryCard = ({ category, index }: { category: typeof categories[0], ind
       <div className={`menu-card ${category.color} h-full flex flex-col`}>
         <div className="flex items-center gap-3 mb-4">
           {category.icon}
-          <h3 className="font-heading text-2xl font-bold">{category.title}</h3>
+          <h3 className="font-heading text-2xl font-bold dark:text-white">{category.title}</h3>
         </div>
-        <p className="text-gray-600 mb-6">{category.description}</p>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">{category.description}</p>
         <div className="mt-auto">
           <ul className="grid grid-cols-2 gap-2">
             {category.items.map((item, i) => (
-              <li key={i} className="flex items-center gap-2">
+              <li key={i} className="flex items-center gap-2 dark:text-white">
                 <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-secondary"></span>
                 {item}
               </li>
@@ -52,7 +51,7 @@ const CategoryCard = ({ category, index }: { category: typeof categories[0], ind
 
 const Categories = () => {
   return (
-    <section id="categories" className="section-padding bg-gradient-to-b from-white to-icecream-yellow/20">
+    <section id="categories" className="section-padding bg-white dark:bg-black">
       <div className="container mx-auto">
         <ScrollReveal>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-3">
@@ -60,7 +59,7 @@ const Categories = () => {
               Explore Our Menu
             </span>
           </h2>
-          <p className="text-gray-600 text-center max-w-md mx-auto mb-12">
+          <p className="text-gray-600 dark:text-gray-300 text-center max-w-md mx-auto mb-12">
             Discover our wide range of handcrafted treats, perfect for any occasion and every craving
           </p>
         </ScrollReveal>

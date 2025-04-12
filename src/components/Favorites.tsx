@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Star } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
@@ -44,7 +43,10 @@ const favorites = [
 
 const Favorites = () => {
   return (
-    <section id="favorites" className="section-padding bg-gradient-to-b from-icecream-blue/20 to-white dark:from-gray-800 dark:to-gray-900">
+    <section
+      id="favorites"
+      className="section-padding bg-white dark:bg-black transition-colors duration-500"
+    >
       <div className="container mx-auto">
         <ScrollReveal>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-3">
@@ -56,15 +58,15 @@ const Favorites = () => {
             Our most beloved treats, as rated by our happy customers
           </p>
         </ScrollReveal>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {favorites.map((item, index) => (
             <ScrollReveal key={item.id} delay={index * 100}>
-              <div className="menu-card h-full flex flex-col dark:bg-gray-800 dark:border dark:border-gray-700">
+              <div className="menu-card h-full flex flex-col bg-white dark:bg-gray-900 dark:border dark:border-gray-700 p-4 rounded-2xl transition-colors duration-500">
                 <div className="relative mb-4">
-                  <img 
-                    src={item.image} 
-                    alt={item.name} 
+                  <img
+                    src={item.image}
+                    alt={item.name}
                     className="w-full h-48 object-cover rounded-lg"
                   />
                   <div className="absolute top-2 right-2 bg-white/80 dark:bg-black/80 backdrop-blur-sm rounded-full px-2 py-1 text-sm font-medium dark:text-white">
@@ -74,15 +76,17 @@ const Favorites = () => {
                     {item.type}
                   </div>
                 </div>
-                
-                <h3 className="font-heading text-xl font-bold mb-1 dark:text-white">{item.name}</h3>
-                
+
+                <h3 className="font-heading text-xl font-bold mb-1 text-gray-800 dark:text-white">
+                  {item.name}
+                </h3>
+
                 <div className="flex items-center mb-3">
                   {[...Array(item.rating)].map((_, i) => (
                     <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                
+
                 <p className="text-gray-600 dark:text-gray-300 italic text-sm">
                   "{item.review}"
                 </p>

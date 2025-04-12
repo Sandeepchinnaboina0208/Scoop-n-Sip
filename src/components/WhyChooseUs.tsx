@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ThumbsUp, LeafyGreen, Heart, Award } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
@@ -32,7 +31,10 @@ const reasons = [
 
 const WhyChooseUs = () => {
   return (
-    <section id="why-us" className="section-padding bg-gradient-to-b from-white to-icecream-blue/20 dark:from-gray-900 dark:to-gray-800">
+    <section
+      id="why-us"
+      className="section-padding bg-white dark:bg-black transition-colors duration-500"
+    >
       <div className="container mx-auto">
         <ScrollReveal>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-3">
@@ -44,15 +46,15 @@ const WhyChooseUs = () => {
             What makes our ice creams and cool drinks stand out from the rest
           </p>
         </ScrollReveal>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {reasons.map((reason, index) => (
             <ScrollReveal key={reason.id} delay={index * 100}>
-              <div className="menu-card flex flex-col items-center text-center h-full dark:bg-gray-800 dark:border dark:border-gray-700">
-                <div className="mb-4">
-                  {reason.icon}
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-2 dark:text-white">{reason.title}</h3>
+              <div className="menu-card flex flex-col items-center text-center h-full bg-white dark:bg-gray-900 dark:border dark:border-gray-700 p-6 rounded-2xl transition-colors duration-500">
+                <div className="mb-4">{reason.icon}</div>
+                <h3 className="font-heading text-xl font-bold mb-2 text-gray-800 dark:text-white">
+                  {reason.title}
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">{reason.description}</p>
               </div>
             </ScrollReveal>

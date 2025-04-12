@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CalendarDays, Percent, Tag } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
@@ -32,7 +31,7 @@ const specialOffers = [
 
 const Specials = () => {
   return (
-    <section id="specials" className="section-padding bg-gradient-to-b from-icecream-yellow/20 to-white">
+    <section id="specials" className="section-padding bg-white dark:bg-black">
       <div className="container mx-auto">
         <ScrollReveal>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-3">
@@ -40,21 +39,21 @@ const Specials = () => {
               Special Offers
             </span>
           </h2>
-          <p className="text-gray-600 text-center max-w-md mx-auto mb-12">
+          <p className="text-gray-600 dark:text-gray-300 text-center max-w-md mx-auto mb-12">
             Don't miss out on these amazing deals and seasonal specials
           </p>
         </ScrollReveal>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {specialOffers.map((offer, index) => (
             <ScrollReveal key={offer.id} delay={index * 100} className="h-full">
               <div className={`menu-card ${offer.color} h-full`}>
-                <div className="flex items-center gap-2 mb-2 text-gray-700">
+                <div className="flex items-center gap-2 mb-2 text-gray-700 dark:text-gray-200">
                   {offer.icon}
                   <span className="text-sm font-medium">{offer.day}</span>
                 </div>
-                <h3 className="font-heading text-xl font-bold mb-3">{offer.title}</h3>
-                <p className="text-gray-600">{offer.description}</p>
+                <h3 className="font-heading text-xl font-bold mb-3 dark:text-white">{offer.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{offer.description}</p>
               </div>
             </ScrollReveal>
           ))}
