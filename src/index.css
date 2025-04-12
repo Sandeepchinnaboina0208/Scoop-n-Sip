@@ -1,0 +1,110 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 336 80% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 190 80% 50%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 50 90% 80%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 px-4 md:py-24 md:px-8 lg:px-12;
+  }
+  
+  .menu-card {
+    @apply bg-white rounded-xl p-4 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:-translate-y-1;
+  }
+  
+  .primary-button {
+    @apply px-6 py-3 bg-primary text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .secondary-button {
+    @apply px-6 py-3 bg-secondary text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .accent-button {
+    @apply px-6 py-3 bg-accent text-accent-foreground rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Fredoka', sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .reveal {
+    @apply opacity-0 transition-all duration-700 ease-out;
+  }
+  
+  .reveal.active {
+    @apply opacity-100 transform-none;
+  }
+  
+  .reveal[data-effect="fade-bottom"] {
+    @apply translate-y-10;
+  }
+  
+  .reveal[data-effect="fade-left"] {
+    @apply -translate-x-10;
+  }
+  
+  .reveal[data-effect="fade-right"] {
+    @apply translate-x-10;
+  }
+}
