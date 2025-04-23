@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -8,24 +8,51 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent",
-      description: "We'll get back to you as soon as possible!",
-    });
+    if (!formRef.current) return;
+
+    try {
+      setIsSubmitting(true);
+      
+      const result = await emailjs.sendForm(
+        'service_w1xfh0l',
+        'template_rshtdkp',
+        formRef.current,
+        'K2V3kyekcGdU81F5x'
+      );
+
+      if (result.text === 'OK') {
+        toast({
+          title: "Message Sent Successfully",
+          description: "We'll get back to you as soon as possible!",
+        });
+        formRef.current.reset();
+      }
+    } catch (error) {
+      toast({
+        title: "Error Sending Message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <>
       <Navbar />
       
-      <div className="pt-0 bg-white dark:bg-black transition-colors duration-300">
-        <div className="container mx-auto section-padding">
+      <div className="pt-20 bg-white dark:bg-black transition-colors duration-300">
+        <div className="container mx-auto px-4 py-12">
           <ScrollReveal>
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-center mb-3 text-zinc-900 dark:text-white">
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -44,30 +71,40 @@ const ContactPage = () => {
                   Send us a Message
                 </h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-zinc-800 dark:text-gray-200">Your Name</label>
-                      <Input id="name" placeholder="John Doe" required />
+                      <label htmlFor="from_name" className="text-sm font-medium text-zinc-800 dark:text-gray-200">Your Name</label>
+                      <Input name="from_name" placeholder="John Doe" required />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-zinc-800 dark:text-gray-200">Your Email</label>
-                      <Input id="email" type="email" placeholder="john@example.com" required />
+                      <label htmlFor="reply_to" className="text-sm font-medium text-zinc-800 dark:text-gray-200">Your Email</label>
+                      <Input name="reply_to" type="email" placeholder="john@example.com" required />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <label htmlFor="subject" className="text-sm font-medium text-zinc-800 dark:text-gray-200">Subject</label>
-                    <Input id="subject" placeholder="How can we help you?" required />
+                    <Input name="subject" placeholder="How can we help you?" required />
                   </div>
                   
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-zinc-800 dark:text-gray-200">Message</label>
-                    <Textarea id="message" placeholder="Your message..." rows={5} required />
+                    <Textarea name="message" placeholder="Your message..." rows={5} required />
                   </div>
                   
-                  <Button type="submit" className="primary-button w-full flex items-center justify-center gap-2">
-                    Send Message <Send size={18} />
+                  <Button 
+                    type="submit" 
+                    className="primary-button w-full flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      'Sending...'
+                    ) : (
+                      <>
+                        Send Message <Send size={18} />
+                      </>
+                    )}
                   </Button>
                 </form>
               </div>
@@ -77,12 +114,12 @@ const ContactPage = () => {
               <div className="space-y-6">
                 <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-md p-6">
                   <h2 className="font-heading text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Contact Information</h2>
-                   <div className="space-y-4 text-zinc-800 dark:text-gray-300">
+                  <div className="space-y-4 text-zinc-800 dark:text-gray-300">
                     <div className="flex items-start gap-4">
                       <MapPin size={24} className="text-primary shrink-0 mt-1" />
                       <div>
                         <h3 className="font-medium">Address</h3>
-                        <p>123 Ice Cream Lane, Frosty City, FC 12345</p>
+                        <p>Kovur, Andhra Pradesh, India</p>
                       </div>
                     </div>
                     
@@ -90,7 +127,7 @@ const ContactPage = () => {
                       <Phone size={24} className="text-primary shrink-0 mt-1" />
                       <div>
                         <h3 className="font-medium">Phone</h3>
-                        <p>(123) 456-7890</p>
+                        <p>+91 891 914 4260</p>
                       </div>
                     </div>
                     
@@ -98,7 +135,7 @@ const ContactPage = () => {
                       <Mail size={24} className="text-primary shrink-0 mt-1" />
                       <div>
                         <h3 className="font-medium">Email</h3>
-                        <p>info@scoopnsip.com</p>
+                        <p>sw30054@gmail.com</p>
                       </div>
                     </div>
                     
@@ -117,7 +154,7 @@ const ContactPage = () => {
                   <h2 className="font-heading text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Our Location</h2>
                   <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
                     <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095242824!2d-73.98815732352236!3d40.74076613537981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9aeb1c6b5%3A0x35b1cfbc89a6097f!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1681221326307!5m2!1sen!2sus" 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.330275262791!2d79.9828823!3d14.4980745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4c8c5d932652f9%3A0xe18641cf0d77a1df!2sNazeer%20Cooldrinks!5e0!3m2!1sen!2sin!4v1713872520315!5m2!1sen!2sin" 
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
