@@ -109,15 +109,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="mt-auto">
-            <Button 
-              variant="primary"
-              size="lg"
-              className="w-full flex gap-2 items-center justify-center"
-              onClick={() => setIsOpen(false)}
-            >
-              <ShoppingCart size={18} />
-              Order Now
-            </Button>
+            
           </div>
         </div>
       </div>

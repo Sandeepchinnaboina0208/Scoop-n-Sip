@@ -1,11 +1,14 @@
+'use client';
 import React, { useState } from 'react';
 import { ArrowRight, MapPin, Coffee } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from './ScrollReveal';
 import { useTheme } from '@/context/ThemeContext';
+import { useNavigate } from 'react-router-dom'; // Updated import
 
 const Hero = () => {
   const { theme } = useTheme();
+  const navigate = useNavigate(); // Updated hook
   const [activeButton, setActiveButton] = useState<number | null>(null);
   const [selectedFlavor, setSelectedFlavor] = useState<string | null>(null);
 
@@ -78,6 +81,7 @@ const Hero = () => {
               }`}
               onMouseEnter={() => setActiveButton(1)}
               onMouseLeave={() => setActiveButton(null)}
+              onClick={() => navigate('/contact')} // Updated navigation
             >
               Order Now <ArrowRight size={18} className={`transition-all duration-300 ${activeButton === 1 ? 'translate-x-1' : ''}`} />
             </Button>
@@ -88,6 +92,7 @@ const Hero = () => {
               }`}
               onMouseEnter={() => setActiveButton(2)}
               onMouseLeave={() => setActiveButton(null)}
+              onClick={() => navigate('/contact')} // Updated navigation
             >
               Find a Store <MapPin size={18} className={`transition-all duration-300 ${activeButton === 2 ? 'translate-y-1' : ''}`} />
             </Button>
@@ -98,6 +103,7 @@ const Hero = () => {
               }`}
               onMouseEnter={() => setActiveButton(3)}
               onMouseLeave={() => setActiveButton(null)}
+              onClick={() => navigate('/menu')} // Updated navigation
             >
               See Menu <Coffee size={18} className={`transition-all duration-300 ${activeButton === 3 ? 'rotate-12' : ''}`} />
             </Button>
