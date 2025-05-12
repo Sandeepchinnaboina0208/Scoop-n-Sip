@@ -18,7 +18,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Serving delicious ice creams and refreshing cool drinks since 2010. Made with love and premium ingredients.
+              Serving delicious ice creams and refreshing cool drinks since 1940. Made with love and premium ingredients.
             </p>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Instagram].map((Icon, index) => (
