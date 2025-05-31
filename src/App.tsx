@@ -10,6 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
     </ThemeProvider>
   </QueryClientProvider>
   <Analytics />
+   <SpeedInsights/>
   </>
 );
 
